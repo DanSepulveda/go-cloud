@@ -26,3 +26,9 @@ export interface IconProps {
     color: string,
     icon: string
 }
+
+export interface CardProps {
+    color: string,
+    icon: 'downarrow' | 'dialog' | 'check' | 'waiting' | 'phone' | 'close' | 'time',
+    title: string
+}
