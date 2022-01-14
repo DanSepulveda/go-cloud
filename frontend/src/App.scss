@@ -1,6 +1,55 @@
-.container{
-    background-color: red;
-    p{
-        color: blue;
+html *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-height: 100vh;
+}
+
+#root{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    height: 15vh;
+}
+
+main{
+    flex: 1;
+}
+
+section{
+    width: 100%;
+    height: 100%;
+}
+
+.login-section{
+    width: 100%;
+    height: 100vh;
+    background: rgb(108, 80, 221);
+    background: -webkit-linear-gradient(to bottom, rgb(108, 80, 221), rgb(25, 69, 194));
+    background-image: url('../public/assets/sms-loginbg.svg'), linear-gradient(to bottom, rgb(108, 80, 221), rgb(25, 69, 194));
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 160% 120%;
+    display: flex;
+
+    .form-container{
+        width: 40%;
+        height: 100%;
+        background-color: white;
+    }
+    
+    .triangle{
+        width: 0;
+        height: 0;
+        border-bottom: 100vh solid white;
+        border-right: 60vw solid transparent;
     }
 }
