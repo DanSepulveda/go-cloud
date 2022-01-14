@@ -32,3 +32,27 @@ export interface CardProps {
     icon: 'downarrow' | 'dialog' | 'check' | 'waiting' | 'phone' | 'close' | 'time',
     title: string
 }
+
+export interface DataProps {
+    telefono: number,
+    fecha: string,
+    hora: string,
+    duracion: string,
+    etapa: string,
+    pasos: string,
+    intentos: number
+}
+
+export interface RowProps {
+    data: {
+        telefono: number,
+        fecha: string,
+        hora: string,
+        duracion: string,
+        etapa: string,
+        pasos: string,
+        intentos: number
+    },
+    index: number,
+}
+

@@ -2,6 +2,7 @@ import Header from '../components/Header'
 import Main from '../components/Main'
 import Section from '../components/Section'
 import CardContainer from '../components/CardContainer'
+import Table from '../components/Table'
 
 const Dashboard = (): JSX.Element => {
     return (
@@ -19,6 +20,7 @@ const Dashboard = (): JSX.Element => {
                         </div>
                     </div>
                     <CardContainer />
+                    <Table />
                 </Section>
             </Main>
         </>
