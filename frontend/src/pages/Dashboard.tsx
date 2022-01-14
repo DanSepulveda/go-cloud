@@ -3,6 +3,7 @@ import Main from '../components/Main'
 import Section from '../components/Section'
 import CardContainer from '../components/CardContainer'
 import Table from '../components/Table'
+import { ReactComponent as Arrow } from '../assets/gc-icon_caret.svg'
 
 const Dashboard = (): JSX.Element => {
     return (
@@ -21,6 +22,10 @@ const Dashboard = (): JSX.Element => {
                     </div>
                     <CardContainer />
                     <Table />
+                    <div className='icons'>
+                        <Arrow />
+                        <Arrow />
+                    </div>
                 </Section>
             </Main>
         </>

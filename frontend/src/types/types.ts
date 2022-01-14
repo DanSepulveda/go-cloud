@@ -33,16 +33,6 @@ export interface CardProps {
     title: string
 }
 
-export interface DataProps {
-    telefono: number,
-    fecha: string,
-    hora: string,
-    duracion: string,
-    etapa: string,
-    pasos: string,
-    intentos: number
-}
-
 export interface RowProps {
     data: {
         telefono: number,
@@ -55,4 +45,3 @@ export interface RowProps {
     },
     index: number,
 }
-

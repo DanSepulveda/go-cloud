@@ -47,6 +47,24 @@ const Table = (): JSX.Element => {
             pasos: 's2',
             intentos: 1,
         },
+        {
+            telefono: 956813742,
+            fecha: '05 Sep 2019',
+            hora: '17:30pm',
+            duracion: '25seg',
+            etapa: 'No iniciada',
+            pasos: 's2',
+            intentos: 1,
+        },
+        {
+            telefono: 956813742,
+            fecha: '05 Sep 2019',
+            hora: '17:30pm',
+            duracion: '25seg',
+            etapa: 'No iniciada',
+            pasos: 's2',
+            intentos: 1,
+        },
     ]
 
     return (

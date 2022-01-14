@@ -15,7 +15,7 @@ const Input = (props: InputProps): JSX.Element => {
                 <div>
                     <input id={id} type={type} {...field} />
                     {meta.touched && !meta.error && <Icon color='#1fb2c4' icon='check' />}
-                    {meta.touched && meta.error && <Icon color='#d80d68' icon='close' />}
+                    {meta.touched && meta.error && <Icon color='#f50e76' icon='close' />}
                 </div>
                 <div className='message'>
                     <span>{meta.touched && meta.error ? `* ${meta.error}` : null}</span>

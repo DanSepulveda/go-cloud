@@ -20,7 +20,7 @@ const icons = {
 const Card = (props: CardProps): JSX.Element => {
     return (
         <div className='card'>
-            <span className='number' style={{ color: props.color }}>36</span>
+            <span className='number' style={{ color: props.color }}>7984</span>
             <span className='title'>{props.title}</span>
             {icons[props.icon]}
             <span></span>

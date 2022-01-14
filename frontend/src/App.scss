@@ -1,12 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu:wght@400;500;700&family=Work+Sans:wght@400;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@300;400;500;700&family=Work+Sans:wght@700;900&display=swap');
 
 @mixin flexColum{
     display: flex;
     flex-direction: column;
 }
 
+@mixin flexColumStart{
+    @include flexColum();
+    align-items: flex-start;
+}
+
 $white-color: rgb(231, 251, 252);
 $light-purple: rgb(185, 190, 230);
+$blue: rgb(0, 154, 220);
+$pink: rgb(245, 14, 118);
 
 // GENERAL STYLES
 html *{
@@ -25,7 +32,7 @@ body{
 #root{
     width: 100%;
     min-height: 100vh;
-    @include flexColum()
+    @include flexColum();
 }
 
 main{
@@ -51,15 +58,13 @@ section{
         width: 40%;
         height: 100%;
         background-color: white;
-        @include flexColum();
+        @include flexColumStart();
         justify-content: space-between;
-        align-items: flex-start;
         padding: 2em 3em;
         padding-top: 6em;
 
         >div:first-child{
-            @include flexColum();
-            align-items: flex-start;
+            @include flexColumStart();
             
             >img{
                 height: 105px;
@@ -77,9 +82,9 @@ section{
         .text-container{
             p:first-child{
                 font-size: 43px;
-                font-weight: bold;
+                font-weight: 900;
                 font-family: 'Work Sans', sans-serif;
-                color: rgb(0, 154, 218);
+                color: $blue;
                 line-height: 25px;
 
                 span{
@@ -89,8 +94,10 @@ section{
                     bottom: 3px;
                 }
             }
+
             p:last-child{
                 font-size: 15px;
+
                 span{
                     font-weight: bold;
                 }
@@ -108,9 +115,8 @@ section{
 
 // LOGINFORM COMPONENT
 .form-container{
+    @include flexColumStart();
     width: 100%;
-    @include flexColum();
-    align-items: flex-start;
     gap: 20px;
 }
 
@@ -118,7 +124,7 @@ section{
 .input-container{
     width: 100%;
     display: flex;
-    font-size: 17px;
+    font-size: 16px;
 
     .label-container{
         width: 100px;
@@ -127,12 +133,14 @@ section{
         
         label{
             text-align: right;
-            font-weight: 500;
+            font-weight: 600;
+            font-family: 'Poppins';
+            font-size: 15px;
+            width: 100px;
         }
     }
 
     .input-section{
-        min-width: 80%;
         @include flexColum();
 
         div:first-child{
@@ -140,7 +148,7 @@ section{
             align-items: center;
 
             input{
-                width: 230px;
+                width: 280px;
                 padding: 0.6em 1.2em;
                 padding-right: 2em;
                 background-color: rgb(232, 240, 253);
@@ -150,14 +158,17 @@ section{
                 transition: all 0.5s ease;
                 font-weight: bold;
                 color: #444;
+                font-family: 'Poppins', sans-serif;
             }
         }
 
         .message{
             height: 13px;
             font-size: 13px;
+            font-weight: 500;
+
             span{
-                color: rgb(245, 14, 118);
+                color: $pink;
             }
         }
     }
@@ -185,15 +196,15 @@ section{
 //BUTTON COMPONENT
 .button{
     text-transform: uppercase;
-    color: white;
-    background-color: rgb(245, 14, 118);
-    color: rgb(255, 241, 255);
+    color: $white-color;
+    background-color: $pink;
     border: none;
     padding: .9em 2.5em;
     border-radius: 4em;
     font-weight: bold;
     cursor: pointer;
     transition: all .3s ease;
+
     &:hover{
         background-color: rgb(216, 13, 104);
     }
@@ -213,19 +224,16 @@ header{
         padding: 0 1.2em;
 
         svg,
-        .st5{
-            height: 87%;
-            fill: white !important;
-            path{
-                fill: white !important;
-            }
+        .cls-2{
+            height: 20vh;
+            fill: white;
         }
 
         svg:last-child{
-            height: 55%;
-            padding: 7px;
+            height: 58%;
+            padding: 8px;
             background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 3px;
+            border-radius: 7px;
             cursor: pointer;
             transition: all .3s ease;
 
@@ -237,13 +245,17 @@ header{
 
     section:last-child{
         background-color: rgb(245, 238, 254);
-        padding: .3em 1.2em;
+        padding: 0 1.2em;
         text-align: end;
+        height: 4vh;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
 
         span{
             font-size: 15px;
             text-transform: uppercase;
-            font-weight: normal;
+            font-family: 'Poppins', sans-serif;
         }
     }
 }
@@ -251,15 +263,18 @@ header{
 // DASHBOARD PAGE
 .info-container{
     padding: 2em 1.2em;
+    height: 86vh;
+    @include flexColumStart();
 
     h1{
         font-size: 16px;
-        color: rgb(245, 14, 118);
+        color: $pink;
         margin-bottom: 1em;
     }
 
     .resume{
-        background-color: rgb(0, 154, 220);
+        width: 100%;
+        background-color: $blue;
         border-radius: 7px;
         padding: .5em 1.5em;
         display: flex;
@@ -271,8 +286,8 @@ header{
             font-weight: 500;
 
             span{
-                font-weight: normal;
                 color: $white-color;
+                font-weight: 300;
             }
         }
 
@@ -284,6 +299,34 @@ header{
             }
         }
     }
+
+    .icons{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        border-top: 2px solid $light-purple;
+        gap: 10px;
+        padding-top: .8em;
+        margin-top: 1.5em;
+
+        svg{
+            background-color: rgb(139, 85, 234);
+            border-radius: 100%;
+            width: 33px;
+            height: 33px;
+            fill: white;
+            padding: 10px;
+        }
+
+        svg:first-child{
+            transform: rotate(90deg);
+            background-color: rgba(140, 85, 234, 0.3)
+        }
+
+        svg:last-child{
+            transform: rotate(-90deg);
+        }
+    }
 }
 
 // CARDCONTAINER COMPONENT
@@ -291,8 +334,8 @@ header{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 1.5em;
-    margin: 1em 0;
-    height: 100px;
+    margin-top: 1em;
+    margin-bottom: 1.3em;
     width: 100%;
 }
 
@@ -303,7 +346,7 @@ header{
 
     .number{
         font-size: 25px;
-        font-weight: 600;
+        font-weight: 700;
         font-family: 'Work Sans', sans-serif;
         margin-bottom: 2px;
     }
@@ -314,7 +357,7 @@ header{
 
     svg,
     .cls-2{
-        width: 30px;
+        width: 15px;
         height: 15px;
         fill: $light-purple !important;
         margin-bottom: 10px;
@@ -329,7 +372,6 @@ header{
         width: 100%;
         height: 7px;
         border-radius: 20px;
-        background-color: red;
     }
 }
 
@@ -338,31 +380,70 @@ table{
     width: 100%;
     border: none;
     border-collapse: collapse;
-    thead{
-        background-color: $light-purple;
-        border-radius: 10px;
+    flex: 1;
 
+    thead{
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+        
         th{
-            color: $white-color;
+            background-color: $light-purple;
+            color: rgb(242, 253, 253);
             text-transform: uppercase;
             font-size: 14px;
             padding: .9em 0;
             width: calc(100% / 7);
         }
+
         th:first-child{
             border-radius: 7px 0 0 7px;
         }
+
         th:last-child{
             border-radius: 0 7px 7px 0;
         }
     }
+
     tbody{
-        td{
-            padding: 1em 0;
-            width: calc(100% / 7);
-            text-align: center;
-            font-size: 14px;
+        width: 100%;
+        max-height: 35vh;
+        overflow-y: scroll;
+        display: block;
+        margin-top: 15px;
+
+        &::-webkit-scrollbar {
+            width: 12px;
+            padding: 10px 0;
+            margin: 10px 0;
+        }
+
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 3px $light-purple; 
+            border-radius: 1px;
+        }
+           
+        &::-webkit-scrollbar-thumb {
+            background: $light-purple;
+            border-radius: 1px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgb(160, 166, 207); 
+        }
+
+        tr{
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+
+            td{
+                padding: 1.4em 0;
+                padding-left: 12px;
+                width: calc(100% / 7);
+                text-align: center;
+                font-size: 14px;
+            }
         }
     }
-
 }
