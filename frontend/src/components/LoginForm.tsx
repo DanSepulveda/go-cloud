@@ -16,6 +16,7 @@ const LoginForm = (): JSX.Element => {
                     .required('Campo obligatorio')
             })}
             onSubmit={async (values, { resetForm }) => {
+                console.log(values)
             }}
         >
             <Form className='form-container'>

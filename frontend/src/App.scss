@@ -5,6 +5,7 @@
     flex-direction: column;
 }
 
+// GENERAL STYLES
 html *{
     margin: 0;
     padding: 0;
@@ -22,10 +23,6 @@ body{
     width: 100%;
     min-height: 100vh;
     @include flexColum()
-}
-
-header{
-    height: 15vh;
 }
 
 main{
@@ -142,6 +139,7 @@ section{
             input{
                 width: 230px;
                 padding: 0.6em 1.2em;
+                padding-right: 2em;
                 background-color: rgb(232, 240, 253);
                 border: 2px solid rgb(31, 178, 196);
                 outline: none;
@@ -181,6 +179,7 @@ section{
     }
 }
 
+//BUTTON COMPONENT
 .button{
     text-transform: uppercase;
     color: white;
@@ -194,5 +193,55 @@ section{
     transition: all .3s ease;
     &:hover{
         background-color: rgb(216, 13, 104);
+    }
+}
+
+// HEADER COMPONENT
+header{
+    height: 12vh;
+    background: rgb(55, 138, 234);
+    background: -webkit-linear-gradient(to right, rgb(55, 138, 234), rgb(137, 62, 221));
+    background: linear-gradient(to right, rgb(55, 138, 234), rgb(137, 62, 221));
+
+    section:first-child{
+        height: 10vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1.5em;
+
+        svg,
+        .st5{
+            height: 87%;
+            fill: white !important;
+            path{
+                fill: white !important;
+            }
+        }
+
+        svg:last-child{
+            height: 55%;
+            padding: 7px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all .3s ease;
+
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+        }
+    }
+
+    section:last-child{
+        background-color: rgb(245, 238, 254);
+        padding: .3em 1.5em;
+        text-align: end;
+
+        span{
+            font-size: 15px;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
     }
 }
