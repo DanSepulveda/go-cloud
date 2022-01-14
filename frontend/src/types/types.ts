@@ -19,7 +19,7 @@ export interface InputProps {
     id: string,
     label: string,
     name: string,
-    type?: string
+    type: string
 }
 
 export interface IconProps {

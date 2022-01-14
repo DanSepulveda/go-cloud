@@ -1,6 +1,6 @@
 import { ButtonProps } from "../types/types"
 
-const Button = (props: ButtonProps) => {
+const Button = (props: ButtonProps): JSX.Element => {
     return (
         <button type={props.type} id={props.id} className='button' >
             {props.children}

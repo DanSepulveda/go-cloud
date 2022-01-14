@@ -1,6 +1,6 @@
 import { SectionProps } from "../types/types"
 
-const Section = (props: SectionProps) => {
+const Section = (props: SectionProps): JSX.Element => {
     return (
         <section className={props.className}>
             {props.children}
