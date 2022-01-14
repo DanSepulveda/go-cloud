@@ -1,11 +1,6 @@
-import React from 'react'
+import { SectionProps } from "../types/types"
 
-interface Props {
-    children: React.ReactNode,
-    className?: string
-}
-
-const Section = (props: Props) => {
+const Section = (props: SectionProps) => {
     return (
         <section className={props.className}>
             {props.children}

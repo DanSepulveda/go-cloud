@@ -1,10 +1,6 @@
-import React from 'react'
+import { MainProps } from "../types/types"
 
-interface Props {
-    children: React.ReactNode,
-}
-
-const Main = (props: Props) => {
+const Main = (props: MainProps) => {
     return (
         <main>
             {props.children}
