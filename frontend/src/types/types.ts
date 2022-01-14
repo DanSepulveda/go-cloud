@@ -21,3 +21,8 @@ export interface InputProps {
     name: string,
     type?: string
 }
+
+export interface IconProps {
+    color: string,
+    icon: string
+}

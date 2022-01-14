@@ -18,7 +18,7 @@ const LoginForm = (): JSX.Element => {
             onSubmit={async (values, { resetForm }) => {
             }}
         >
-            <Form>
+            <Form className='form-container'>
                 <Input
                     name="email"
                     id="email"
