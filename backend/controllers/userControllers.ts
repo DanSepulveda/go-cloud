@@ -2,6 +2,10 @@ import { CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon
 import userPool from '../config/congnitoUserPool'
 import { Request, Response } from 'express'
 import { AuthData, DataName } from '../types'
+// import accessDB from '../config/database'
+import { ddbClient } from '../config/database'
+import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers'
+import config from '../config/env'
 
 const userControllers = {
     signup: async (req: Request, res: Response) => {
@@ -59,7 +63,14 @@ const userControllers = {
         unloggedUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 var accessToken = result.getAccessToken().getJwtToken();
-                console.log(accessToken)
+                ddbClient.config.credentials = fromCognitoIdentityPool({
+                    identityPoolId: 'us-east-1:2e68a01b-ad44-4714-a806-5d4adf7627bc',
+                    logins: {
+                        'cognito-idp.us-east-1.amazonaws.com/us-east-1_28qP4WJzA': result.getIdToken().getJwtToken(),
+                    },
+                })
+                // accessDB(accessToken)
+                res.json({ success: true })
 
                 //POTENTIAL: Region needs to be set if not already set previously elsewhere.
                 // AWS.config.region = '<region>';
