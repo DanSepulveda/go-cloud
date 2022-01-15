@@ -4,7 +4,7 @@ const callControllers = require('./controllers/callControllers')
 
 router.route('/calls')
     .post(callControllers.createCall)
-    .get(callControllers.getCalls)
+    .get(callControllers.getAllCalls)
 
 router.route('/call/:id')
     .get(callControllers.getCallByID)

@@ -1,4 +1,4 @@
-import { PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand } from '@aws-sdk/client-dynamodb'
+import { PutItemCommand, ScanCommand, GetItemCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb'
 import { Request, Response } from 'express'
 import { ddbClient } from '../config/database'
 import { CallProps, CreateParams, GetCallByID } from '../types'
@@ -30,7 +30,7 @@ const callControllers = {
             res.json({ success: false, error })
         }
     },
-    getCalls: async (req: Request, res: Response) => {
+    getAllCalls: async (req: Request, res: Response) => {
         const params = {
             TableName: 'calls'
         }
