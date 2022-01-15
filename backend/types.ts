@@ -18,3 +18,10 @@ export interface CreateParams {
         status_date: { S: string }
     }
 }
+
+export interface GetCallByID {
+    TableName: string,
+    Key: {
+        id: { S: string }
+    }
+}

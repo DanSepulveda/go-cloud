@@ -1,7 +1,7 @@
-import { PutItemCommand, BatchGetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb'
+import { PutItemCommand, GetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb'
 import { Request, Response } from 'express'
 import { ddbClient } from '../config/database'
-import { CallProps, CreateParams } from '../types'
+import { CallProps, CreateParams, GetCallByID } from '../types'
 const attr = require('dynamodb-data-types').AttributeValue;
 const { v4: uuidv4 } = require('uuid');
 
@@ -40,6 +40,23 @@ const callControllers = {
             if (data.Items?.length) {
                 data.Items = data.Items.map(obj => attr.unwrap(obj))
             }
+            res.json({ success: true, response: data })
+        } catch (error) {
+            res.json({ success: false, error })
+        }
+    },
+    getCallByID: async (req: Request, res: Response) => {
+        const params: GetCallByID = {
+            TableName: 'calls',
+            Key: { id: { S: req.params.id } }
+        }
+
+        try {
+            const data = await ddbClient.send(new GetItemCommand(params))
+            if (data.Item) {
+                data.Item = attr.unwrap(data.Item)
+            }
+
             res.json({ success: true, response: data })
         } catch (error) {
             res.json({ success: false, error })

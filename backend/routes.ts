@@ -6,4 +6,7 @@ router.route('/calls')
     .post(callControllers.createCall)
     .get(callControllers.getCalls)
 
+router.route('/call/:id')
+    .get(callControllers.getCallByID)
+
 module.exports = router
