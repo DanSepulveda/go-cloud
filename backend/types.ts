@@ -25,3 +25,8 @@ export interface GetCallByID {
         id: { S: string }
     }
 }
+
+export interface PoolData {
+    UserPoolId: string,
+    ClientId: string
+}
