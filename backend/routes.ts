@@ -14,4 +14,10 @@ router.route('/call/:id')
 router.route('/signup')
     .post(userControllers.signup)
 
+router.route('/confirm-registration')
+    .post(userControllers.confirmRegistration)
+
+router.route('/login')
+    .post(userControllers.login)
+
 module.exports = router
