@@ -1,4 +1,4 @@
-import { PutItemCommand, GetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb'
+import { PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand } from '@aws-sdk/client-dynamodb'
 import { Request, Response } from 'express'
 import { ddbClient } from '../config/database'
 import { CallProps, CreateParams, GetCallByID } from '../types'
@@ -57,6 +57,19 @@ const callControllers = {
                 data.Item = attr.unwrap(data.Item)
             }
 
+            res.json({ success: true, response: data })
+        } catch (error) {
+            res.json({ success: false, error })
+        }
+    },
+    deleteCallById: async (req: Request, res: Response) => {
+        const params: GetCallByID = {
+            TableName: 'calls',
+            Key: { id: { S: req.params.id } }
+        }
+
+        try {
+            const data = await ddbClient.send(new DeleteItemCommand(params))
             res.json({ success: true, response: data })
         } catch (error) {
             res.json({ success: false, error })

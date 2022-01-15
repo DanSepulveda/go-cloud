@@ -8,5 +8,6 @@ router.route('/calls')
 
 router.route('/call/:id')
     .get(callControllers.getCallByID)
+    .delete(callControllers.deleteCallById)
 
 module.exports = router
