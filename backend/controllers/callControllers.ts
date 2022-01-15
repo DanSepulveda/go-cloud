@@ -1,15 +1,15 @@
-import { Request, Response } from 'express'
-const { v4: uuidv4 } = require('uuid');
-import { ddbClient } from '../config/database'
 import { PutItemCommand, BatchGetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb'
+import { Request, Response } from 'express'
+import { ddbClient } from '../config/database'
+import { CallProps, CreateParams } from '../types'
 const attr = require('dynamodb-data-types').AttributeValue;
-import { CallProps } from '../types'
+const { v4: uuidv4 } = require('uuid');
 
 const callControllers = {
     createCall: async (req: Request, res: Response) => {
         const { phoneNumber, date, status, step, status_date } = req.body
 
-        const itemData = {
+        const itemData: CallProps = {
             id: uuidv4(),
             phoneNumber: phoneNumber,
             date: date,
@@ -18,18 +18,11 @@ const callControllers = {
             status_date: status_date,
         }
 
-        const params = {
+        const params: CreateParams = {
             TableName: "calls",
             Item: attr.wrap(itemData)
-            // Item: {
-            //     id: { S: uuidv4() },
-            //     phoneNumber: { S: phoneNumber },
-            //     date: { S: date },
-            //     status: { S: status },
-            //     step: { S: step },
-            //     status_date: { S: status_date },
-            // },
         }
+
         try {
             await ddbClient.send(new PutItemCommand(params))
             res.json({ success: true })

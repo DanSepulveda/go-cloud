@@ -1,4 +1,13 @@
 export interface CallProps {
+    id: string,
+    phoneNumber: string,
+    date: string,
+    status: string,
+    step: string,
+    status_date: string
+}
+
+export interface CreateParams {
     TableName: string,
     Item: {
         id: { S: string },
