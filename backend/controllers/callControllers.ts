@@ -1,20 +1,26 @@
 import { Request, Response } from 'express'
+const { v4: uuidv4 } = require('uuid');
 import { ddbClient } from '../config/database'
 import { PutItemCommand } from '@aws-sdk/client-dynamodb'
+import { CallProps } from '../types'
 
 const callControllers = {
     createCall: async (req: Request, res: Response) => {
-        const params = {
+        const { phoneNumber, date, status, step, status_date } = req.body
+
+        const params: CallProps = {
             TableName: "calls",
             Item: {
-                id: { N: "002" },
-                nombre: { S: "Richard Roe" },
+                id: { S: uuidv4() },
+                phoneNumber: { S: phoneNumber },
+                date: { S: date },
+                status: { S: status },
+                step: { S: step },
+                status_date: { S: status_date },
             },
         }
-
         try {
-            const call = await ddbClient.send(new PutItemCommand(params))
-            console.log(JSON.stringify(call))
+            await ddbClient.send(new PutItemCommand(params))
             res.json({ success: true })
         } catch (error) {
             res.json({ success: false, error })
