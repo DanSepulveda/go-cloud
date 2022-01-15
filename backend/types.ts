@@ -30,3 +30,14 @@ export interface PoolData {
     UserPoolId: string,
     ClientId: string
 }
+
+// USER
+export interface DataName {
+    Name: string,
+    Value: string
+}
+
+export interface AuthData {
+    Username: string,
+    Password: string
+}

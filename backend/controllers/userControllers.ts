@@ -1,13 +1,14 @@
-import { Request, Response } from 'express'
+import { CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon-cognito-identity-js'
 import userPool from '../config/congnitoUserPool'
-import { CognitoUser, AuthenticationDetails, CognitoUserAttribute } from "amazon-cognito-identity-js"
+import { Request, Response } from 'express'
+import { AuthData, DataName } from '../types'
 
 const userControllers = {
     signup: async (req: Request, res: Response) => {
         const { username, email, password } = req.body
 
         let attributeList = []
-        const dataName = {
+        const dataName: DataName = {
             Name: 'name',
             Value: username
         }
@@ -16,43 +17,46 @@ const userControllers = {
 
         userPool.signUp(email, password, attributeList, [], function (error, result) {
             if (error) {
-                res.json({ success: false, error: error.message })
-                return;
+                res.json({ success: false, error: error.message || JSON.stringify(error) })
+                return
             }
-            var cognitoUser = result?.user;
-            console.log('user name is ' + cognitoUser?.getUsername());
-        });
+            const registeredUser = result?.user;
+            res.json({ success: true, response: `${registeredUser?.getUsername()} registered successfully` })
+        })
     },
     confirmRegistration: async (req: Request, res: Response) => {
-        var { email, code } = req.body
+        const { email, code } = req.body
 
-        const cognitoUser = new CognitoUser({
+        const unconfirmedUser = new CognitoUser({
             Username: email,
             Pool: userPool,
         })
 
-        cognitoUser.confirmRegistration(code.toString(), true, function (error, result) {
+        unconfirmedUser.confirmRegistration(code, true, function (error, result) {
             if (error) {
                 res.json({ success: false, erorr: error.message || JSON.stringify(error) })
                 return
             }
-            res.json({ success: true })
+            console.log(result)
+            res.json({ success: true, message: 'Successful verification. Now you can login using your credentials.' })
         })
     },
     login: async (req: Request, res: Response) => {
         const { email, password } = req.body
 
-        const user = new CognitoUser({
+        const unloggedUser = new CognitoUser({
             Username: email,
             Pool: userPool,
         })
 
-        const authenticationDetails = new AuthenticationDetails({
+        const authData: AuthData = {
             Username: email,
             Password: password,
-        });
+        }
 
-        user.authenticateUser(authenticationDetails, {
+        const authenticationDetails = new AuthenticationDetails(authData);
+
+        unloggedUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 var accessToken = result.getAccessToken().getJwtToken();
                 console.log(accessToken)
@@ -81,12 +85,11 @@ const userControllers = {
                 //     }
                 // });
             },
-
-            onFailure: function (err) {
-                console.log(err.message || JSON.stringify(err));
+            onFailure: function (error) {
+                res.json({ success: false, error: error.message || JSON.stringify(error) })
             },
-        });
-    }
+        })
+    },
 }
 
 module.exports = userControllers
