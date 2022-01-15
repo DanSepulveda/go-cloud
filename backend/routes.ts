@@ -4,5 +4,6 @@ const callControllers = require('./controllers/callControllers')
 
 router.route('/calls')
     .post(callControllers.createCall)
+    .get(callControllers.getCalls)
 
 module.exports = router
