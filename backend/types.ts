@@ -1,3 +1,4 @@
+// CALLS
 export interface CallProps {
     id: string,
     phoneNumber: string,
@@ -32,7 +33,7 @@ export interface PoolData {
     ClientId: string
 }
 
-// USER
+// USERS
 export interface DataName {
     Name: string,
     Value: string

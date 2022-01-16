@@ -20,7 +20,7 @@ const userControllers = {
                 res.json({ success: false, error: error.message || JSON.stringify(error) })
                 return
             }
-            const registeredUser = result?.user;
+            const registeredUser = result?.user
             res.json({ success: true, response: `${registeredUser?.getUsername()} registered successfully` })
         })
     },
@@ -53,11 +53,11 @@ const userControllers = {
             Password: password,
         }
 
-        const authenticationDetails = new AuthenticationDetails(authData);
+        const authenticationDetails = new AuthenticationDetails(authData)
 
         unloggedUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
-                const token = result.getAccessToken().getJwtToken();
+                const token = result.getAccessToken().getJwtToken()
                 const name = result.getIdToken().payload.name
 
                 res.json({ success: true, response: { token, name } })
