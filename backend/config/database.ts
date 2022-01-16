@@ -1,7 +1,5 @@
-import { DynamoDBClient, DynamoDB } from "@aws-sdk/client-dynamodb";
-import { fromCognitoIdentity, fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
-import userPool from "./congnitoUserPool";
-import config from './env'
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 
 const connectDB = (token: string) => {
     const ddb = new DynamoDBClient({

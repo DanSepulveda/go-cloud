@@ -1,14 +1,9 @@
 import { PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand } from '@aws-sdk/client-dynamodb'
 import { Request, Response } from 'express'
-// import ddbClient from '../config/database'
 import connectDB from '../config/database'
 import { CallProps, CreateParams, GetCallByID } from '../types'
 const attr = require('dynamodb-data-types').AttributeValue
 const { v4: uuidv4 } = require('uuid')
-
-import config from '../config/env'
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 
 const callControllers = {
     createCall: async (req: Request, res: Response) => {

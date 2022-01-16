@@ -2,7 +2,6 @@ import { CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon
 import userPool from '../config/congnitoUserPool'
 import { Request, Response } from 'express'
 import { AuthData, DataName } from '../types'
-import connectDB from '../config/database'
 
 const userControllers = {
     signup: async (req: Request, res: Response) => {
