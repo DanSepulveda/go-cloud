@@ -22,7 +22,4 @@ router.route('/confirm-registration')
 router.route('/login')
     .post(userControllers.login)
 
-router.route('/prueba')
-    .post(userControllers.prueba)
-
 module.exports = router

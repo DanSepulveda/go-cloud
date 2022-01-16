@@ -2,8 +2,6 @@ import { CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon
 import userPool from '../config/congnitoUserPool'
 import { Request, Response } from 'express'
 import { AuthData, DataName } from '../types'
-import config from '../config/env'
-import AWS from 'aws-sdk'
 
 const userControllers = {
     signup: async (req: Request, res: Response) => {
@@ -39,7 +37,6 @@ const userControllers = {
                 res.json({ success: false, erorr: error.message || JSON.stringify(error) })
                 return
             }
-            console.log(result)
             res.json({ success: true, message: 'Successful verification. Now you can login using your credentials.' })
         })
     },
@@ -60,53 +57,16 @@ const userControllers = {
 
         unloggedUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
-                const accessToken = result.getAccessToken().getJwtToken();
+                const token = result.getAccessToken().getJwtToken();
+                const name = result.getIdToken().payload.name
 
-                AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                    IdentityPoolId: 'us-east-1:2e68a01b-ad44-4714-a806-5d4adf7627bc',
-                    Logins: {
-                        'cognito-idp.us-east-1.amazonaws.com/us-east-1_28qP4WJzA': accessToken
-                    }
-                })
-
-                // AWS.config.update({
-                //     credentials: new AWS.CognitoIdentityCredentials({
-                //         IdentityPoolId: 'us-east-1:2e68a01b-ad44-4714-a806-5d4adf7627bc',
-                //         Logins: {
-                //             'cognito-idp.us-east-1.amazonaws.com/us-east-1_28qP4WJzA': accessToken
-                //         }
-                //     })
-                // })
-
-                //POTENTIAL: Region needs to be set if not already set previously elsewhere.
-                // AWS.config.region = '<region>';
-
-                // AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                //     IdentityPoolId: '...', // your identity pool id here
-                //     Logins: {
-                //         // Change the key below according to the specific region your user pool is in.
-                //         'cognito-idp.<region>.amazonaws.com/<YOUR_USER_POOL_ID>': result
-                //             .getIdToken()
-                //             .getJwtToken(),
-                //     },
-                // });
-
-                //refreshes credentials using AWS.CognitoIdentity.getCredentialsForIdentity()
-                // AWS.config.credentials.refresh(error => {
-                //     if (error) {
-                //         console.error(error);
-                //     } else {
-                //         // Instantiate aws sdk service objects now that the credentials have been updated.
-                //         // example: var s3 = new AWS.S3();
-                //         console.log('Successfully logged!');
-                //     }
-                // });
+                res.json({ success: true, response: { token, name } })
             },
             onFailure: function (error) {
                 res.json({ success: false, error: error.message || JSON.stringify(error) })
             },
         })
-    },
+    }
 }
 
 module.exports = userControllers
