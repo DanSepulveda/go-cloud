@@ -26,6 +26,7 @@ export interface GetCallByID {
     }
 }
 
+// Cognito user pool
 export interface PoolData {
     UserPoolId: string,
     ClientId: string
