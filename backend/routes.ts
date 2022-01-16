@@ -1,16 +1,17 @@
 const expressRouter = require('express')
 const router = expressRouter.Router()
-const callControllers = require('./controllers/callControllers')
+// const callControllers = require('./controllers/callControllers')
 const userControllers = require('./controllers/userControllers')
+import setCredentials from './config/setCredentials'
 
 // CALLS ENDPOINTS
-router.route('/calls')
-    .post(callControllers.createCall)
-    .get(callControllers.getAllCalls)
+// router.route('/calls')
+//     .post(setCredentials, callControllers.createCall)
+//     .get(setCredentials, callControllers.getAllCalls)
 
-router.route('/call/:id')
-    .get(callControllers.getCallByID)
-    .delete(callControllers.deleteCallById)
+// router.route('/call/:id')
+//     .get(setCredentials, callControllers.getCallByID)
+//     .delete(setCredentials, callControllers.deleteCallById)
 
 // USERS ENDPOINTS
 router.route('/signup')

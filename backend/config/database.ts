@@ -1,7 +1,16 @@
-import AWS from 'aws-sdk'
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
+import config from './env'
 
-AWS.config.update({ region: 'REGION' });
+const ddbClient = new DynamoDBClient({
+    credentials: fromCognitoIdentityPool({
+        identityPoolId: config.AWS_IDENTITY_POOL_ID,
+        logins: {
+            [config.AWS_PROVIDER]: 'funciona'
+        }
+    }),
+    region: 'us-east-1',
+    endpoint: 'https://dynamodb.us-east-1.amazonaws.com'
+})
 
-var ddbClient = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
-
-export { ddbClient }
+export default ddbClient 

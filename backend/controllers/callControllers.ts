@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { ddbClient } from '../config/database'
+import ddbClient from '../config/database'
 import { CallProps, CreateParams, GetCallByID } from '../types'
 const attr = require('dynamodb-data-types').AttributeValue
 const { v4: uuidv4 } = require('uuid')

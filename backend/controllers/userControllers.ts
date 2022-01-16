@@ -2,6 +2,7 @@ import { CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon
 import userPool from '../config/congnitoUserPool'
 import { Request, Response } from 'express'
 import { AuthData, DataName } from '../types'
+import ddbClient from '../config/database'
 
 const userControllers = {
     signup: async (req: Request, res: Response) => {
@@ -53,12 +54,19 @@ const userControllers = {
             Password: password,
         }
 
+
         const authenticationDetails = new AuthenticationDetails(authData)
 
         unloggedUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 const token = result.getAccessToken().getJwtToken()
                 const name = result.getIdToken().payload.name
+
+                userPool.getCurrentUser()?.getSession(function (err: any, session: any) {
+                    const funciona = session.getIdToken().getJwtToken()
+
+                })
+
 
                 res.json({ success: true, response: { token, name } })
             },
