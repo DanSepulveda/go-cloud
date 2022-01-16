@@ -1,3 +1,4 @@
+import { PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand } from '@aws-sdk/client-dynamodb'
 import { Request, Response } from 'express'
 import ddbClient from '../config/database'
 import { CallProps, CreateParams, GetCallByID } from '../types'
@@ -21,28 +22,27 @@ const callControllers = {
             TableName: 'calls',
             Item: attr.wrap(itemData)
         }
-
-        ddbClient.putItem(params, function (error, data) {
-            if (error) {
-                res.json({ success: false, error })
-            } else {
-                res.json({ success: true, response: data })
-            }
-        })
+        try {
+            await ddbClient.send(new PutItemCommand(params))
+            res.json({ success: true })
+        } catch (error) {
+            res.json({ success: false, error })
+        }
     },
     getAllCalls: async (req: Request, res: Response) => {
         const params = {
             TableName: 'calls'
         }
 
-        ddbClient.scan(params, function (error, data) {
-            if (error) {
-                res.json({ success: false, error })
-            } else {
-                data.Items = data.Items?.map(obj => attr.unwap(obj))
-                res.json({ sucess: true, response: data })
+        try {
+            let data = await ddbClient.send(new ScanCommand(params))
+            if (data.Items?.length) {
+                data.Items = data.Items.map(obj => attr.unwrap(obj))
             }
-        })
+            res.json({ success: true, response: data })
+        } catch (error) {
+            res.json({ success: false, error })
+        }
     },
     getCallByID: async (req: Request, res: Response) => {
         const params: GetCallByID = {
@@ -50,13 +50,15 @@ const callControllers = {
             Key: { id: { S: req.params.id } }
         }
 
-        ddbClient.getItem(params, function (error, data) {
-            if (error) {
-                res.json({ success: false, error })
-            } else {
-                res.json({ sucess: true, response: data.Item })
+        try {
+            const data = await ddbClient.send(new GetItemCommand(params))
+            if (data.Item) {
+                data.Item = attr.unwrap(data.Item)
             }
-        })
+            res.json({ success: true, response: data })
+        } catch (error) {
+            res.json({ success: false, error })
+        }
     },
     deleteCallById: async (req: Request, res: Response) => {
         const params: GetCallByID = {
@@ -64,13 +66,12 @@ const callControllers = {
             Key: { id: { S: req.params.id } }
         }
 
-        ddbClient.deleteItem(params, function (error, data) {
-            if (error) {
-                res.json({ success: false, error })
-            } else {
-                res.json({ success: true, response: data })
-            }
-        })
+        try {
+            const data = await ddbClient.send(new DeleteItemCommand(params))
+            res.json({ success: true, response: data })
+        } catch (error) {
+            res.json({ success: false, error })
+        }
     }
 }
 
