@@ -2,6 +2,7 @@ import { CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon
 import userPool from '../config/congnitoUserPool'
 import { Request, Response } from 'express'
 import { AuthData, DataName } from '../types'
+import connectDB from '../config/database'
 
 const userControllers = {
     signup: async (req: Request, res: Response) => {
@@ -57,7 +58,7 @@ const userControllers = {
 
         unloggedUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
-                const token = result.getAccessToken().getJwtToken()
+                const token = result.getIdToken().getJwtToken()
                 const name = result.getIdToken().payload.name
                 res.json({ success: true, response: { token, name } })
             },

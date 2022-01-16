@@ -1,12 +1,20 @@
 import { PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand } from '@aws-sdk/client-dynamodb'
 import { Request, Response } from 'express'
-import ddbClient from '../config/database'
+// import ddbClient from '../config/database'
+import connectDB from '../config/database'
 import { CallProps, CreateParams, GetCallByID } from '../types'
 const attr = require('dynamodb-data-types').AttributeValue
 const { v4: uuidv4 } = require('uuid')
 
+import config from '../config/env'
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
+
 const callControllers = {
     createCall: async (req: Request, res: Response) => {
+        const token: string = req.headers.authorization || ''
+        const ddbClient = connectDB(token)
+
         const { phoneNumber, date, status, step, status_date } = req.body
 
         const itemData: CallProps = {
@@ -23,13 +31,17 @@ const callControllers = {
             Item: attr.wrap(itemData)
         }
         try {
+            console.log('1')
             await ddbClient.send(new PutItemCommand(params))
+            console.log('2')
             res.json({ success: true })
         } catch (error) {
             res.json({ success: false, error })
         }
     },
     getAllCalls: async (req: Request, res: Response) => {
+        const token: string = req.headers.authorization || ''
+        const ddbClient = connectDB(token)
         const params = {
             TableName: 'calls'
         }
@@ -45,6 +57,8 @@ const callControllers = {
         }
     },
     getCallByID: async (req: Request, res: Response) => {
+        const token: string = req.headers.authorization || ''
+        const ddbClient = connectDB(token)
         const params: GetCallByID = {
             TableName: 'calls',
             Key: { id: { S: req.params.id } }
@@ -61,6 +75,8 @@ const callControllers = {
         }
     },
     deleteCallById: async (req: Request, res: Response) => {
+        const token: string = req.headers.authorization || ''
+        const ddbClient = connectDB(token)
         const params: GetCallByID = {
             TableName: 'calls',
             Key: { id: { S: req.params.id } }

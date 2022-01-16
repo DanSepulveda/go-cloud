@@ -4,8 +4,6 @@ import dotenv from 'dotenv'
 dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
 interface ENV {
-    // AWS_ACCESS_KEY_ID: string | undefined
-    // AWS_SECRET_ACCESS_KEY: string | undefined
     AWS_POOL_ID: string | undefined,
     AWS_CLIENT_ID: string | undefined,
     AWS_PROVIDER: string | undefined,
@@ -13,8 +11,6 @@ interface ENV {
 }
 
 interface Config {
-    // AWS_ACCESS_KEY_ID: string
-    // AWS_SECRET_ACCESS_KEY: string
     AWS_POOL_ID: string,
     AWS_CLIENT_ID: string,
     AWS_PROVIDER: string,
@@ -23,8 +19,6 @@ interface Config {
 
 const getConfig = (): ENV => {
     return {
-        // AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
-        // AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
         AWS_POOL_ID: process.env.AWS_POOL_ID,
         AWS_CLIENT_ID: process.env.AWS_CLIENT_ID,
         AWS_PROVIDER: process.env.AWS_PROVIDER,
