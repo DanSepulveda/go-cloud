@@ -1,5 +1,4 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-// import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
 import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity'
 

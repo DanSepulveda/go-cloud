@@ -42,7 +42,6 @@ const userControllers = {
     },
     login: async (req: Request, res: Response) => {
         const { email, password } = req.body
-
         const unloggedUser = new CognitoUser({
             Username: email,
             Pool: userPool,
