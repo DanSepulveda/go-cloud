@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 import connectDB from '../config/database'
 import { CallProps, CreateParams, GetCallByID } from '../types'
 const attr = require('dynamodb-data-types').AttributeValue
+import { v4 as uuidv4 } from 'uuid'
 
 const callControllers = {
     createCall: async (req: Request, res: Response) => {
@@ -12,7 +13,7 @@ const callControllers = {
         const { phoneNumber, date, status, step, status_date } = req.body
 
         const itemData: CallProps = {
-            id: 'dsada',
+            id: uuidv4(),
             phoneNumber: phoneNumber,
             date: date,
             status: status,
@@ -25,9 +26,7 @@ const callControllers = {
             Item: attr.wrap(itemData)
         }
         try {
-            console.log('1')
             await ddbClient.send(new PutItemCommand(params))
-            console.log('2')
             res.json({ success: true })
         } catch (error) {
             res.json({ success: false })
@@ -47,7 +46,7 @@ const callControllers = {
             }
             res.json({ success: true, response: data })
         } catch (error) {
-            res.json({ success: false, error })
+            res.json({ success: false })
         }
     },
     getCallByID: async (req: Request, res: Response) => {
@@ -65,7 +64,7 @@ const callControllers = {
             }
             res.json({ success: true, response: data })
         } catch (error) {
-            res.json({ success: false, error })
+            res.json({ success: false })
         }
     },
     deleteCallById: async (req: Request, res: Response) => {
@@ -80,11 +79,9 @@ const callControllers = {
             const data = await ddbClient.send(new DeleteItemCommand(params))
             res.json({ success: true, response: data })
         } catch (error) {
-            res.json({ success: false, error })
+            res.json({ success: false })
         }
     }
 }
-
-// module.exports = callControllers
 
 export default callControllers
