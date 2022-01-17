@@ -41,7 +41,24 @@ Using Formik with Yup allow to validate information before making a request so y
 
 ### Content
 
+### Endpoints
+
+- `/signup`
+    - **POST**: used to create a user in Cognito Pool. It requires an object in the request body `{name: string, email: string, password: string}`
+- `/confirm-registratio`
+    - **POST**: after signup an email with a code is sent. You need to confirm account. Send an object in the request body `{email: string, code: string}`
+- `/login`
+    - **POST**: used to access app using Cognito verification. It requires an object in the request body `{email: string, password: string}`
+
 ### Technology Stack
+- [Nodejs](https://nodejs.org/en/) - JavaScript Runtime
+- [Express](https://expressjs.com/) - Nodejs Framework
+- [TypeScript](https://www.typescriptlang.org/) - JavaScript with syntax for types
+- [DynamoDB](https://docs.aws.amazon.com/dynamodb/) - NoSQL Database Service from AWS
+- [UUID](https://www.npmjs.com/package/uuid) - In this project is used to create unique id for dynamodb items
+- [Dynamo Data Types](https://www.npmjs.com/package/dynamodb-data-types) - Used for writing Items easier
+- [Cognito Pool](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html) - For user authentication
+- [Cognito Identity](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html) - To generate credentials to access DynamoDB
 
 ---
 
