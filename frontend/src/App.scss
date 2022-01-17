@@ -447,3 +447,16 @@ table{
         }
     }
 }
+
+// LOADER COMPONENT
+.loader{
+    width: 100%;
+    height: 100vh;
+    @include flexColum();
+    justify-content: center;
+    align-items: center;
+
+    img{
+        margin-bottom: 1em ;
+    }
+}

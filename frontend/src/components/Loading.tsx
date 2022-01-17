@@ -1,10 +1,14 @@
-import React from 'react'
+import Main from './Main'
+import Section from './Section'
 
 const Loading = () => {
     return (
-        <div>
-            cargando
-        </div>
+        <Main>
+            <Section className='loader'>
+                <img src='/assets/robot-loader.gif' alt="" />
+                <h2>Cargando información...</h2>
+            </Section>
+        </Main>
     )
 }
 

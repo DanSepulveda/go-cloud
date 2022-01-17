@@ -7,9 +7,11 @@ import Loading from '../components/Loading'
 import { ReactComponent as Arrow } from '../assets/gc-icon_caret.svg'
 import { useContext, useState, useEffect } from 'react'
 import UserContext from '../context/UserContext'
-import { Calls } from '../types/contex'
+import { message } from '../lib/alert'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = (): JSX.Element => {
+    const navigate = useNavigate()
     const [calls, setCalls] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const { getAllCalls, userState } = useContext(UserContext)
@@ -17,17 +19,15 @@ const Dashboard = (): JSX.Element => {
     const getCalls = async (token: string) => {
         try {
             const response = await getAllCalls(token)
-            console.log(response.success)
             if (response.success) {
-                console.log('entro')
                 setCalls(response.response.Items)
-                console.log('entro')
                 setIsLoading(false)
             } else {
                 throw new Error()
             }
-        } catch (error) {
-            alert('error')
+        } catch (error: any) {
+            message('Ocurrió un problema. Intente más tarde')
+            navigate('/login')
         }
     }
 
@@ -53,7 +53,7 @@ const Dashboard = (): JSX.Element => {
                             <p>Duración promedio llamada: <span>24seg</span></p>
                         </div>
                     </div>
-                    <CardContainer />
+                    <CardContainer calls={calls} />
                     <Table calls={calls} />
                     <div className='icons'>
                         <Arrow />

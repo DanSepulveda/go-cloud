@@ -6,6 +6,7 @@ import Button from './Button'
 import UserContext from '../context/UserContext'
 import { useContext } from 'react'
 import { UserProps } from '../types/contex'
+import { message } from '../lib/alert'
 
 const LoginForm = (): JSX.Element => {
     const navigate = useNavigate()
@@ -14,13 +15,15 @@ const LoginForm = (): JSX.Element => {
     const handleSubmit = async (credentials: UserProps) => {
         try {
             const response = await login(credentials)
+            console.log(response)
             if (response.success) {
                 navigate('/')
                 return
+            } else {
+                throw new Error()
             }
-            throw new Error()
-        } catch (error) {
-            alert('error')
+        } catch (error: any) {
+            message('Credenciales incorrectas')
         }
     }
 
@@ -55,7 +58,6 @@ const LoginForm = (): JSX.Element => {
                 <Button type="submit" id='send'>Ingresar</Button>
             </Form>
         </Formik>
-
     )
 }
 

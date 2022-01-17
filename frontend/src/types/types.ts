@@ -30,7 +30,8 @@ export interface IconProps {
 export interface CardProps {
     color: string,
     icon: 'downarrow' | 'dialog' | 'check' | 'waiting' | 'phone' | 'close' | 'time',
-    title: string
+    title: string,
+    number: number
 }
 
 export interface RowProps {

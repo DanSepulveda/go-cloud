@@ -1,74 +1,7 @@
-import { Call, Calls } from '../types/contex'
+import { Call } from '../types/contex'
 import Row from './Row'
 
 const Table = ({ calls }: any): JSX.Element => {
-    console.log(calls)
-    const datos = [
-        {
-            telefono: 956813742,
-            fecha: '05 Sep 2019',
-            hora: '17:30pm',
-            duracion: '25seg',
-            etapa: 'No iniciada',
-            pasos: 's2',
-            intentos: 1,
-        },
-        {
-            telefono: 956813742,
-            fecha: '05 Sep 2019',
-            hora: '17:30pm',
-            duracion: '25seg',
-            etapa: 'No iniciada',
-            pasos: 's2',
-            intentos: 1,
-        },
-        {
-            telefono: 956813742,
-            fecha: '05 Sep 2019',
-            hora: '17:30pm',
-            duracion: '25seg',
-            etapa: 'No iniciada',
-            pasos: 's2',
-            intentos: 1,
-        },
-        {
-            telefono: 956813742,
-            fecha: '05 Sep 2019',
-            hora: '17:30pm',
-            duracion: '25seg',
-            etapa: 'No iniciada',
-            pasos: 's2',
-            intentos: 1,
-        },
-        {
-            telefono: 956813742,
-            fecha: '05 Sep 2019',
-            hora: '17:30pm',
-            duracion: '25seg',
-            etapa: 'No iniciada',
-            pasos: 's2',
-            intentos: 1,
-        },
-        {
-            telefono: 956813742,
-            fecha: '05 Sep 2019',
-            hora: '17:30pm',
-            duracion: '25seg',
-            etapa: 'No iniciada',
-            pasos: 's2',
-            intentos: 1,
-        },
-        {
-            telefono: 956813742,
-            fecha: '05 Sep 2019',
-            hora: '17:30pm',
-            duracion: '25seg',
-            etapa: 'No iniciada',
-            pasos: 's2',
-            intentos: 1,
-        },
-    ]
-
     return (
         <table>
             <thead>

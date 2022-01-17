@@ -12,7 +12,7 @@ export const getTime = (date: string) => {
 }
 
 export const getDuration = (initial: string, final: string) => {
-    const formatedDuration = moment(new Date(parseInt(initial) - parseInt(final))).format('h:mm')
+    const formatedDuration = moment.utc((parseInt(final) - parseInt(initial)) * 1000).format('mm:ss')
     return formatedDuration
 }
 

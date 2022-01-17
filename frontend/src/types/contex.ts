@@ -21,3 +21,7 @@ export interface Calls {
     step: string,
     id: string
 }[]
+
+export interface Numbers {
+    number: string
+}[]
