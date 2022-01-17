@@ -25,6 +25,7 @@ const callControllers = {
             TableName: 'calls',
             Item: attr.wrap(itemData)
         }
+
         try {
             await ddbClient.send(new PutItemCommand(params))
             res.json({ success: true })

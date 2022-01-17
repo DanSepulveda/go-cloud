@@ -4,7 +4,7 @@ import UserContext from '../context/UserContext'
 import { useContext } from 'react'
 
 const Header = (): JSX.Element => {
-    const { logout } = useContext(UserContext)
+    const { logout, userState } = useContext(UserContext)
 
     return (
         <header>
@@ -13,7 +13,7 @@ const Header = (): JSX.Element => {
                 <Person onClick={logout} />
             </section>
             <section>
-                <span>omni</span>
+                <span>{`omni ${userState.name}`}</span>
             </section>
         </header>
     )

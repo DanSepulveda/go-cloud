@@ -9,7 +9,8 @@ interface UserStateProps {
 interface userActions {
     login: (user: UserProps) => Promise<any>,
     logout: () => void,
-    userState: UserStateProps
+    userState: UserStateProps,
+    getAllCalls: (token: string) => Promise<any>
 }
 
 const UserContext = createContext({} as userActions)

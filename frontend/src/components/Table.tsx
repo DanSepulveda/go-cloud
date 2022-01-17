@@ -1,6 +1,8 @@
+import { Call, Calls } from '../types/contex'
 import Row from './Row'
 
-const Table = (): JSX.Element => {
+const Table = ({ calls }: any): JSX.Element => {
+    console.log(calls)
     const datos = [
         {
             telefono: 956813742,
@@ -81,7 +83,7 @@ const Table = (): JSX.Element => {
                 </tr>
             </thead>
             <tbody>
-                {datos.map((data, index) => <Row data={data} index={index} />)}
+                {calls.map((call: Call, index: number) => <Row call={call} key={index} />)}
             </tbody>
         </table>
     )

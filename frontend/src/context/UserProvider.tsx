@@ -24,11 +24,28 @@ const UserProvider = ({ children }: any) => {
         dispatch({ type: "LOGOUT" })
     }
 
+    const getAllCalls = async (token: string) => {
+        try {
+            const response = await axios.get(`${HOST}/calls`, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            if (response.data.success) {
+                return response.data
+            }
+            throw new Error()
+        } catch (error: any) {
+            return error.message
+        }
+    }
+
     return (
         <UserContext.Provider value={{
             login,
             logout,
-            userState
+            userState,
+            getAllCalls
         }}>
             {children}
         </UserContext.Provider>

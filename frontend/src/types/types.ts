@@ -34,14 +34,13 @@ export interface CardProps {
 }
 
 export interface RowProps {
-    data: {
-        telefono: number,
-        fecha: string,
-        hora: string,
-        duracion: string,
-        etapa: string,
-        pasos: string,
-        intentos: number
+    call: {
+        phoneNumber: string,
+        status_date: string,
+        date: string,
+        status: string,
+        step: string,
+        id: string
     },
-    index: number,
+    key: number,
 }
