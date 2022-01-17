@@ -85,4 +85,6 @@ const callControllers = {
     }
 }
 
-module.exports = callControllers
+// module.exports = callControllers
+
+export default callControllers

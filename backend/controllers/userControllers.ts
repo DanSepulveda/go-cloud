@@ -64,7 +64,10 @@ const userControllers = {
                 res.json({ success: false, error: error.message || JSON.stringify(error) })
             },
         })
+    },
+    logout: async (req: Request, res: Response) => {
+
     }
 }
 
-module.exports = userControllers
+export default userControllers

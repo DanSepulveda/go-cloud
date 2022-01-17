@@ -1,7 +1,8 @@
-const expressRouter = require('express')
+import expressRouter from 'express'
+import callControllers from './controllers/callControllers'
+import userControllers from './controllers/userControllers'
+
 const router = expressRouter.Router()
-const callControllers = require('./controllers/callControllers')
-const userControllers = require('./controllers/userControllers')
 
 // CALLS ENDPOINTS
 router.route('/calls')
@@ -21,5 +22,8 @@ router.route('/confirm-registration')
 
 router.route('/login')
     .post(userControllers.login)
+
+router.route('/logout')
+    .get(userControllers.logout)
 
 export default router
