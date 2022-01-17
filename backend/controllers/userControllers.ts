@@ -66,7 +66,14 @@ const userControllers = {
         })
     },
     logout: async (req: Request, res: Response) => {
-
+        const currentUser = userPool.getCurrentUser()
+        if (!currentUser) {
+            res.json({ success: false, response: 'There is not any logged in user' })
+            return
+        }
+        currentUser.signOut(() => {
+            res.json({ success: true, response: 'Signed out successful' })
+        })
     }
 }
 
