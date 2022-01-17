@@ -1,7 +1,11 @@
+import { memo } from 'react'
 import Card from './Card'
 import { getRandom } from '../lib/getInfo'
 
-const CardContainer = ({ calls }: any): JSX.Element => {
+// Information for this component is setted when dashboard page loads and it shouldn't change
+// That why meme is used. To prevent re render component when user navigate the table
+
+const CardContainer = memo(({ calls }: any): JSX.Element => {
     const random = Math.ceil(Math.random() * 10)
     return (
         <div className='cards-container'>
@@ -14,6 +18,6 @@ const CardContainer = ({ calls }: any): JSX.Element => {
             <Card color='rgb(244, 14, 123)' icon='time' title='Compromiso Pago' number={getRandom(random)} />
         </div>
     )
-}
+})
 
 export default CardContainer

@@ -20,6 +20,16 @@ export interface Calls {
     status: string,
     step: string,
     id: string
+    slice: any
+}[]
+
+export type calls = {
+    phoneNumber: '',
+    status_date: '',
+    date: '',
+    status: '',
+    step: '',
+    id: ''
 }[]
 
 export interface Numbers {

@@ -1,11 +1,11 @@
+import { useContext } from 'react'
+import UserContext from '../context/UserContext'
+import { UserProps } from '../types/contex'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import Input from './Input'
 import Button from './Button'
-import UserContext from '../context/UserContext'
-import { useContext } from 'react'
-import { UserProps } from '../types/contex'
 import { message } from '../lib/alert'
 
 const LoginForm = (): JSX.Element => {
@@ -13,17 +13,17 @@ const LoginForm = (): JSX.Element => {
     const { login } = useContext(UserContext)
 
     const handleSubmit = async (credentials: UserProps) => {
+        // After validate form data a request is send. If credential are ok, a token is generated and the user can access '/'
         try {
             const response = await login(credentials)
-            console.log(response)
             if (response.success) {
                 navigate('/')
                 return
             } else {
-                throw new Error()
+                message('Credenciales incorrectas')
             }
         } catch (error: any) {
-            message('Credenciales incorrectas')
+            message('Ocurrió un problema. Intente más tarde')
         }
     }
 

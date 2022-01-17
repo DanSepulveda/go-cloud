@@ -9,6 +9,8 @@ const App = () => {
   const { userState } = useContext(UserContext)
   const token = userState.token
 
+  // Only logged in users can access to '/'. After successful log in, a token is generated.
+
   return (
     <BrowserRouter>
       <Routes>

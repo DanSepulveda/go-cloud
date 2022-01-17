@@ -310,21 +310,34 @@ header{
         margin-top: 1.5em;
 
         svg{
-            background-color: rgb(139, 85, 234);
             border-radius: 100%;
             width: 33px;
             height: 33px;
             fill: white;
             padding: 10px;
+            transition: all .3s ease;
         }
 
         svg:first-child{
             transform: rotate(90deg);
-            background-color: rgba(140, 85, 234, 0.3)
+            
         }
 
         svg:last-child{
             transform: rotate(-90deg);
+        }
+
+        svg.active{
+            background-color: rgb(139, 85, 234);
+            cursor: pointer;
+        }
+
+        svg.inactive{
+            background-color: rgba(140, 85, 234, 0.3)
+        }
+
+        svg.active:hover{
+            background-color: rgb(119, 71, 202);
         }
     }
 }
@@ -459,4 +472,8 @@ table{
     img{
         margin-bottom: 1em ;
     }
+}
+
+.lala{
+    background-color: red;
 }

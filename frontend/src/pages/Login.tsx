@@ -1,8 +1,15 @@
 import Section from '../components/Section'
 import LoginForm from '../components/LoginForm'
 import Main from '../components/Main'
+import { useEffect } from 'react'
 
 const Login = (): JSX.Element => {
+
+    useEffect(() => {
+        document.title = 'GoCloud | Login'
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <Main>
             <Section className='login-section'>
