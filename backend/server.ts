@@ -1,7 +1,7 @@
-const express = require('express')
+import express from 'express'
 import { Request, Response } from 'express'
+import Router from './routes'
 const cors = require('cors')
-const Router = require('./routes')
 
 const app = express()
 

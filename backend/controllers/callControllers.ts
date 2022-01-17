@@ -3,7 +3,6 @@ import { Request, Response } from 'express'
 import connectDB from '../config/database'
 import { CallProps, CreateParams, GetCallByID } from '../types'
 const attr = require('dynamodb-data-types').AttributeValue
-const { v4: uuidv4 } = require('uuid')
 
 const callControllers = {
     createCall: async (req: Request, res: Response) => {
@@ -13,7 +12,7 @@ const callControllers = {
         const { phoneNumber, date, status, step, status_date } = req.body
 
         const itemData: CallProps = {
-            id: uuidv4(),
+            id: 'dsada',
             phoneNumber: phoneNumber,
             date: date,
             status: status,
@@ -31,7 +30,7 @@ const callControllers = {
             console.log('2')
             res.json({ success: true })
         } catch (error) {
-            res.json({ success: false, error })
+            res.json({ success: false })
         }
     },
     getAllCalls: async (req: Request, res: Response) => {

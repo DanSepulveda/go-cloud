@@ -22,4 +22,4 @@ router.route('/confirm-registration')
 router.route('/login')
     .post(userControllers.login)
 
-module.exports = router
+export default router
