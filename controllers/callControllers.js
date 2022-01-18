@@ -93,4 +93,4 @@ const callControllers = {
         }
     })
 };
-exports.default = callControllers;
+module.exports = callControllers;

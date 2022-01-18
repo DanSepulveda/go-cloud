@@ -80,4 +80,4 @@ const userControllers = {
         });
     })
 };
-exports.default = userControllers;
+module.exports = userControllers;
