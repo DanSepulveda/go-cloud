@@ -26,4 +26,4 @@ router.route('/login')
 router.route('/logout')
     .get(userControllers.logout)
 
-export default router
+module.exports = router

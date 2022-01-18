@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const expressRouter = require('express');
 const callControllers = require('./controllers/callControllers');
 const userControllers = require('./controllers/userControllers');
@@ -20,4 +19,4 @@ router.route('/login')
     .post(userControllers.login);
 router.route('/logout')
     .get(userControllers.logout);
-exports.default = router;
+module.exports = router;
