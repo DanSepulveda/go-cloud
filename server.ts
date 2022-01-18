@@ -1,16 +1,18 @@
-const express = require('express')
 import { Request, Response } from 'express'
+const express = require('express')
 const path = require('path')
-const Router = require('./routes.ts')
 const cors = require('cors')
 require('dotenv').config()
+const router = require('./routes.ts')
+const morgan = require('morgan')
 
 const app = express()
 
 // MIDDLEWARES
 app.use(cors())
 app.use(express.json())
-app.use('/api', Router)
+app.use(morgan('dev'))
+app.use('/api', router)
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
@@ -19,6 +21,6 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || '0.0.0.0'
 
-app.listen(`${PORT}`, '0.0.0.0', () => console.log(`Server listening on port ${PORT}`))
+app.listen(`${PORT}`, () => console.log(`Server listening on port ${PORT}`))
