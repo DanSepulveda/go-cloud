@@ -1,6 +1,6 @@
 const expressRouter = require('express')
-import callControllers from './controllers/callControllers'
-import userControllers from './controllers/userControllers'
+const callControllers = require('./controllers/callControllers')
+const userControllers = require('./controllers/userControllers')
 
 const router = expressRouter.Router()
 
