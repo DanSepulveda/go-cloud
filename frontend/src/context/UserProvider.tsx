@@ -6,7 +6,7 @@ import { UserProps } from '../types/contex'
 
 const UserProvider = ({ children }: any) => {
     const [userState, dispatch] = useReducer(userReducer, { name: null, token: null })
-    const HOST = 'http://localhost:4000/api'
+    const HOST = 'https://go-cloud-dansep.herokuapp.com:4000/api'
 
     const login = async (credentials: UserProps) => {
         try {
