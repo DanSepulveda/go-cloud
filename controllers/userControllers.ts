@@ -41,26 +41,34 @@ const userControllers = {
         })
     },
     login: async (req: Request, res: Response) => {
+        console.log(req.body)
+        console.log('1')
         const { email, password } = req.body
+        console.log('2')
         const unloggedUser = new CognitoUser({
             Username: email,
             Pool: userPool,
         })
 
+        console.log('3')
         const authData: AuthData = {
             Username: email,
             Password: password,
         }
+        console.log('4')
 
         const authenticationDetails = new AuthenticationDetails(authData)
+        console.log('5')
 
         unloggedUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
+                console.log('6')
                 const token = result.getIdToken().getJwtToken()
                 const name = result.getIdToken().payload.name
                 res.json({ success: true, response: { token, name } })
             },
             onFailure: function (error) {
+                console.log('7')
                 res.json({ success: false, error: error.message || JSON.stringify(error) })
             },
         })
